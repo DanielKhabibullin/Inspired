@@ -1,78 +1,88 @@
-
-
 .footer {
-	border-top: 1px solid $light-gray;
 
 	&__container {
+		padding-top: 51px;
+		padding-bottom: 24px;
+		display: grid;
+		grid-template-columns: 1fr 2fr 1fr;
+		grid-template-areas: 
+		'category social contacts'
+		'copyright . development';
+		gap: 26px 20px;
+
+		border-top: 1px solid $light-gray;
+
+		@include laptop {
+			grid-template-columns: 1fr 1fr 1fr;
+			padding-top: 31px;
+		}
+		@include tablet {
+			padding-top: 25px;
+			padding-bottom: 16px;
+			gap-row: 17px;
+			grid-template-columns: 1fr 2fr 1fr;
+		}
+		@include mobile {
+			padding-top: 17px;
+			gap: 24px;
+			grid-template-columns: 1fr max-content;
+			grid-template-areas: 
+				'category social'
+				'contacts contacts'
+				'development development'
+				'copyright copyright';
+		}
 	}
 
 	&__item {
 
 		&_category {
+			grid-area: category;
 		}
 
 		&_social {
+			grid-area: social;
+			justify-self: center;
 		}
 
 		&_contacts {
+			grid-area: contacts;
 		}
 
 		&_copyright {
+			grid-area: copyright;
+			align-self: end;
 		}
 
 		&_development {
+			grid-area: development;
 		}
 	}
 
 	&__title {
+		font-weight: 400;
+		font-size: 18px;
+		line-height: 22px;
+		text-transform: uppercase;
+		color: $main-color;
+
+		@include tablet {
+			font-size: 16px;
+			line-height: 19px;
+		}
+
+		@include mobile {
+			font-size: 14px;
+			line-height: 17px;
+		}
+
 	}
 
 	&__link {
-	}
-}
-.footer-category {
+		transition: color .3s ease-in-out;
 
-	&__title {
-	}
-
-	&__list {
-	}
-
-	&__item {
-	}
-
-	&__subtitle {
-	}
-
-	&__sublist {
-	}
-
-	&__subitem {
-	}
-}
-.footer-social {
-
-	&__title {
-	}
-
-	&__subtitle {
-	}
-
-	&__list {
-	}
-
-	&__item {
-	}
-
-	&__link {
-	}
-}
-.footer-contacts {
-}
-.footer-copyright {
-}
-.footer-development {
-
-	&__list {
+		&:hover {
+			color: $gray;
+		}
 	}
 }

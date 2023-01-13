@@ -1,19 +1,19 @@
 .product {
 
 	&__link {
-		transition: color .2s linear;
+		transition: color .24s linear;
 
 		&:hover {
 			color: $gray;
 		}
 	}
-	// TODO не работает hover O_o
+	// TODO не работает hover, хотя отображается в просмотре кода O_o
 
 	&__image {
-		margin-bottom: 13px;
+		margin-bottom: 16px;
 
 		@include tablet {
-		margin-bottom: 5px;
+		margin-bottom: 10px;
 		}
 	}
 
@@ -28,6 +28,7 @@
 		@include tablet {
 			font-size: 12px;
 			line-height: 15px;
+			margin-bottom: 15px;
 		}
 	}
 
@@ -36,6 +37,10 @@
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
+
+		@include tablet {
+			margin-bottom: 3px;
+		}
 	}
 
 	&__price {
