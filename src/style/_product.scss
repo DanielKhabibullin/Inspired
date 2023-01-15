@@ -7,7 +7,7 @@
 			color: $gray;
 		}
 	}
-	// TODO не работает hover, хотя отображается в просмотре кода O_o
+
 
 	&__image {
 		margin-bottom: 16px;
@@ -22,12 +22,10 @@
 
 		font-weight: 400;
 		font-size: 14px;
-		line-height: 17px;
-		color: $main-color;
+		color: inherit;
 
 		@include tablet {
 			font-size: 12px;
-			line-height: 15px;
 			margin-bottom: 15px;
 		}
 	}
@@ -46,12 +44,10 @@
 	&__price {
 		font-weight: 400;
 		font-size: 14px;
-		line-height: 17px;
 		color: $main-color;
 
 		@include tablet {
 			font-size: 12px;
-			line-height: 15px;
 		}
 	}
 

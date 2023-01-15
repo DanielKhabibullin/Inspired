@@ -29,13 +29,11 @@
 
 		font-weight: 600;
 		font-size: 14px;
-		line-height: 17px;
 		color: $main-color;
 
 		@include tablet {
 			margin-bottom: 0;
 			font-size: 12px;
-			line-height: 15px;
 		}
 	}
 
@@ -44,7 +42,6 @@
 		flex-direction: column;
 		gap: 6px;
 		font-size: 14px;
-		line-height: 17px;
 
 		@include tablet {
 			display: none;

@@ -86,7 +86,6 @@
 
 		font-weight: 700;
 		font-size: 14px;
-		line-height: 17px;
 		text-transform: uppercase;
 		color: $second-color;
 
@@ -97,7 +96,6 @@
 		@include tablet {
 			padding: 12px 40px;
 			font-size: 10px;
-			line-height: 12px;
 		}
 	
 		&:hover {

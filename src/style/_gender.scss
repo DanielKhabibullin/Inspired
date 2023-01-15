@@ -11,7 +11,6 @@
 
 		font-weight: 400;
 		font-size: 18px;
-		line-height: 22px;
 		text-transform: uppercase;
 		text-align: center;
 		color: $main-color;
@@ -21,12 +20,10 @@
 		
 		@include tablet {
 			font-size: 16px;
-			line-height: 19px;
 		}
 
 		@include mobile {
 			font-size: 14px;
-			line-height: 17px;
 		}
 
 		&:hover {
