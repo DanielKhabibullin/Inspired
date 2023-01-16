@@ -64,11 +64,11 @@ export const renderFooter = (gender) => {
 		},
 	);
 
-	for (const genderName in DATA.footer) {
+	for (const genderName in DATA.navigation) {
 		createElement('a',
 			{
 				className: 'footer__link',
-					textContent: DATA.footer[genderName].title,
+					textContent: DATA.navigation[genderName].title,
 					href: `#/${genderName}`,
 			},
 			{
@@ -85,7 +85,7 @@ export const renderFooter = (gender) => {
 		);
 	}
 	
-	const footerCategoryElems = DATA.footer[gender].list.map((item) => 
+	const footerCategoryElems = DATA.navigation[gender].list.map((item) => 
 		createElement(
 			'li', 
 			{
