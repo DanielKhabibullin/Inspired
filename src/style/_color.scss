@@ -20,20 +20,4 @@
 		border-radius: 50%;
 	}
 
-	&_red:after {
-		background-color: red;
-	}
-
-	&_white:after {
-		background-color: white;
-		border: $main-color .4px solid;  // У Максима в видео не по макету цвет и размер (22:51)
-	}
-
-	&_black:after {
-		background-color: black;
-	}
-
-	&_pink:after {
-		background-color: pink;
-	}
 }

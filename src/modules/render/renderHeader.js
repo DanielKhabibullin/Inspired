@@ -8,7 +8,7 @@ export const searchButton = createElement('button', {
 			<path d="M10.875 18.75C15.2242 18.75 18.75 15.2242 18.75 10.875C18.75 6.52576 15.2242 3 10.875 3C6.52576 3 3 6.52576 3 10.875C3 15.2242 6.52576 18.75 10.875 18.75Z" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
 			<path d="M16.4431 16.4438L20.9994 21.0002" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
 		</svg>
-	`
+	`,
 });
 
 export const cartLink = createElement('a', {
@@ -36,10 +36,20 @@ const container = createElement('div', {
 	className: 'container  header__container',
 	innerHTML: `
 		<a class="header__phone  header__link" href="tel:89304902620">8 930 490 26 20</a>
-
-		<img class="header__logo" src="${logo}" alt="Logo Inspired">
-	`
+	`,
 });
+
+createElement('a', 
+	{
+		className: 'header__logo',
+		href: '/#',
+		innerHTML: `<img src="${logo}" alt="Logo Inspired">`,
+	},
+	{
+		parent: container,
+	},
+);
+
 const nav = createElement('div', 
 	{
 		className: 'header__navigation'
