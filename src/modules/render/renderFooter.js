@@ -11,6 +11,8 @@ export const vkLink = createElement('a', {
 	href: 'https://vk.com'
 });
 
+
+
 export const tgLink = createElement('a', {
 	className: 'footer-social__link  footer-social__link_tg  footer__link',
 	innerHTML: `
@@ -21,41 +23,24 @@ export const tgLink = createElement('a', {
 	href: 'https://telegram.org'
 });
 
-export const renderFooter = (gender) => {
-	const footer = document.querySelector('.footer');
-	footer.textContent = '';
-	
-	const container = createElement('div', 
-	{
-	className: 'container'
-	},
-	{
-		parent: footer,
-	},
-	);
-
-	const footerContainer = createElement('div', 
-	{
-	className: 'footer__container'
-	},
-	{
-		parent: container,
-	},
-	);
-
+const createFooterCategory = () => {
 	const footerCategory = createElement('div', 
-	{
-		className: 'footer__item  footer__item_category  footer-category',
-		innerHTML: `
-		<h2 class="footer__title footer-category__title">Каталог</h2>
-		`,
-	},
-	{
-		parent: footerContainer,
-	},
+		{
+			className: 'footer__item  footer__item_category  footer-category',
+		}
 	);
 
-	const footerGenderList = createElement('ul',
+	createElement('h2', 
+		{
+			className: 'footer__title footer-category__title',
+			textContent: 'Каталог',
+		},
+		{
+			parent: footerCategory,
+		},
+	);
+
+	const footerCategoryList = createElement('ul',
 		{
 			className: 'footer-category__list',
 		},
@@ -64,55 +49,82 @@ export const renderFooter = (gender) => {
 		},
 	);
 
-	for (const genderName in DATA.navigation) {
-		createElement('a',
+	for (const key in DATA.navigation) { 
+		const footerCategoryItem = createElement('li', 
 			{
-				className: 'footer__link',
-					textContent: DATA.navigation[genderName].title,
-					href: `#/${genderName}`,
+				className: 'footer-category__item',
 			},
 			{
-				parent: createElement(
-					'li',
+				parent: footerCategoryList,
+				append: createElement('h3', 
 					{
-						className: 'footer-category__item',
+						className: 'footer-category__subtitle',
 					},
 					{
-						parent: footerGenderList,
-					},
-				),
-			},
-		);
-	}
-	
-	const footerCategoryElems = DATA.navigation[gender].list.map((item) => 
-		createElement(
-			'li', 
-			{
-				className: 'footer-category__item', 			// TODO <h3> ??
-			}, 
-			{
-				append: createElement('a',
-					{
-						className: 'footer__link',
-						textContent: item.title,
-						href: `#/${gender}/${item.slug}`,
-					}, 
-					
+						append: createElement('a',
+							{
+								className: 'footer__link',
+								href: `#/${key}`, //OR cb
+								textContent: DATA.navigation[key].title
+							},
+							// {
+							// 	cb(el) {
+							// 		el.addEventListener('click', e => {
+							// 			e.preventDefault();
+							// 			router.navigate(key)
+							// 		})
+							// 	}
+							// }
+						),
+					}
 				),
 			}
-		)
-	)
+		); 
+		createElement(
+				'ul',
+				{
+					className: 'footer-category__sublist',
+				},
+				{
+					parent: footerCategoryItem,
+					appends: DATA.navigation[key].list.map(item => 
+						createElement('li',
+							{
+								className: 'footer-category__subitem',
+							},
+							{
+								append: createElement(
+									'a',
+									{
+										className: 'footer__link',
+										href: `#/${key}/${item.slug}`,
+										textContent: item.title
+									},
+								)
+							}
+						)
+					)
+				},
+			);
 
-	createElement(
-		'ul',
-		{
-			className: 'footer-category__sublist',
-		},
-		{
-			parent: footerCategory,
-			appends: footerCategoryElems
-		},
+	};
+
+	return footerCategory;
+}
+
+
+export const renderFooter = () => {
+	const footer = document.querySelector('.footer');
+	footer.textContent = '';
+	
+	const container = createElement('div', 
+	{
+	className: 'container  footer__container',
+	},
+	{
+		parent: footer,
+		append: createFooterCategory()
+	},
 	);
 
 	const footerSocial = createElement('div', 
@@ -123,7 +135,7 @@ export const renderFooter = (gender) => {
 					<p class="footer-social__subtitle">Контакты и адреса магазинов</p>`,
 	},
 	{
-		parent: footerContainer,
+		parent: container,
 	},
 	);
 
@@ -148,7 +160,7 @@ export const renderFooter = (gender) => {
 	}
 	);
 
-	const footerContacts = createElement('div', 
+	createElement('div',
 	{
 		className: 'footer__item  footer__item_contacts  footer-contacts',
 		innerHTML: `
@@ -157,7 +169,7 @@ export const renderFooter = (gender) => {
 		`,
 	},
 	{
-		parent: footerContainer,
+		parent: container,
 	},
 	);
 
@@ -169,17 +181,17 @@ export const renderFooter = (gender) => {
 			`
 		},
 		{
-			parent: footerContainer,
+			parent: container,
 		},
 	);
 
 	const footerDevelopment = createElement('div', 
-	{
-	className: 'footer__item  footer__item_development  footer-development'
-	},
-	{
-		parent: footerContainer,
-	},
+		{
+			className: 'footer__item  footer__item_development  footer-development'
+		},
+		{
+			parent: container,
+		},
 	);
 
 	createElement('ul', 
@@ -200,65 +212,15 @@ export const renderFooter = (gender) => {
 				textContent: 'Developer: ',   //TODO эта строка не работает, переделать не через <p>
 				innerHTML: `<p>Developer: <a class="footer__link" target="_blank" href="https://t.me/Khabibullin_Daniel">Khabibullin Daniel</a></p>
 				`,
-				}),
+				}
+			),
 		]	
 	}
 );
 
 };
 
-// footer.innerHTML = `
-	// <div class="container">
-	// <div class="footer__container">
-	// 	<div class="footer__item  footer__item_category footer-category">
-	// 		<h2 class="footer__title footer-category__title">Каталог</h2>
-	// 		<ul class="footer-category__list">
-	// 			<li class="footer-category__item">
-	// 				<h3 class="footer-category__subtitle">
-	// 					<a class="footer__link" href="#">Женщины</a>
-	// 				</h3>
-	// 				<ul class="footer-category__sublist">
-	// 					<li class="footer-category__subitem">
-	// 						<a class="footer__link" href="#">Бюстгальтеры</a>
-	// 					</li>
-	// 					<li class="footer-category__subitem">
-	// 						<a class="footer__link" href="#">Трусы</a>
-	// 					</li>
-	// 					<li class="footer-category__subitem">
-	// 						<a class="footer__link" href="#">Носки</a>
-	// 					</li>
-	// 					<li class="footer-category__subitem">
-	// 						<a class="footer__link" href="#">Халаты</a>
-	// 					</li>
-	// 					<li class="footer-category__subitem">
-	// 						<a class="footer__link" href="#">Термобелье</a>
-	// 					</li>
-	// 					<li class="footer-category__subitem">
-	// 						<a class="footer__link" href="#">Пижамы</a>
-	// 					</li>
-	// 				</ul>
-	// 			</li>
-	// 			<li class="footer-category__item">
-	// 				<h3 class="footer-category__subtitle">
-	// 					<a class="footer__link" href="#">Мужчины</a>
-	// 				</h3>
-	// 				<ul class="footer-category__sublist">
-	// 					<li class="footer-category__subitem">
-	// 						<a class="footer__link" href="#">Трусы</a>
-	// 					</li>
-	// 					<li class="footer-category__subitem">
-	// 						<a class="footer__link" href="#">Носки</a>
-	// 					</li>
-	// 					<li class="footer-category__subitem">
-	// 						<a class="footer__link" href="#">Халаты</a>
-	// 					</li>
-	// 					<li class="footer-category__subitem">
-	// 						<a class="footer__link" href="#">Термобелье</a>
-	// 					</li>
-	// 				</ul>
-	// 			</li>
-	// 		</ul>
-	// 	</div>
+	// container.insertAdjacentHTML('beforeend', `
 	// 	<div class="footer__item  footer__item_social footer-social">
 	// 		<h2 class="footer__title footer-social__title">Связаться с нами</h2>
 	// 		<p class="footer-social__subtitle">Контакты и адреса магазинов</p> 
@@ -278,24 +240,22 @@ export const renderFooter = (gender) => {
 	// 					</a>
 	// 				</li>
 	// 			</ul>
-	// 		</div>
-	// 		<div class="footer__item  footer__item_contacts footer-contacts">
-	// 			<a class="footer__link" href="mailto:Inspired@gmail.com">Inspired@gmail.com</a>
-	// 			<a class="footer__link" href="tel:89304902620">8 930 490 26 20</a>
-	// 		</div>
-	// 		<div class="footer__item  footer__item_copyright footer-copyright">
-	// 			<p>© INSPIRED, 2023</p>
-	// 		</div>
-	// 		<div class="footer__item  footer__item_development footer-development">
-	// 			<ul class="footer-development__list">
-	// 				<li class="footer-development__item">
-	// 					Designer: <a class="footer__link" target="_blank" href="https://t.me/Mrsshmallowww">Anastasia Ilina</a>
-	// 				</li>
-	// 				<li class="footer-development__item">
-	// 					Developer: <a class="footer__link" target="_blank" href="https://t.me/Khabibullin_Daniel">Khabibullin Daniel</a>
-	// 				</li>
-	// 			</ul>
-	// 		</div>
 	// 	</div>
-	// </div>
-	// `;
+	// 	<div class="footer__item  footer__item_contacts footer-contacts">
+	// 		<a class="footer__link" href="mailto:Inspired@gmail.com">Inspired@gmail.com</a>
+	// 		<a class="footer__link" href="tel:89304902620">8 930 490 26 20</a>
+	// 	</div>
+	// 	<div class="footer__item  footer__item_copyright footer-copyright">
+	// 		<p>© INSPIRED, 2023</p>
+	// 	</div>
+	// 	<div class="footer__item  footer__item_development footer-development">
+	// 		<ul class="footer-development__list">
+	// 			<li class="footer-development__item">
+	// 				Designer: <a class="footer__link" target="_blank" href="https://t.me/Mrsshmallowww">Anastasia Ilina</a>
+	// 			</li>
+	// 			<li class="footer-development__item">
+	// 				Developer: <a class="footer__link" target="_blank" href="https://t.me/Khabibullin_Daniel">Khabibullin Daniel</a>
+	// 			</li>
+	// 		</ul>
+	// 	</div>
+	// `);
