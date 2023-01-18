@@ -64,7 +64,7 @@ const createFooterCategory = () => {
 						append: createElement('a',
 							{
 								className: 'footer__link',
-								href: `#/${key}`, //OR cb
+								href: `#/${key}`, //или оставить решетку и подключть cb ниже
 								textContent: DATA.navigation[key].title
 							},
 							// {
@@ -203,14 +203,14 @@ export const renderFooter = () => {
 		appends: [
 			createElement('li', {
 				className: 'footer-development__item',
-				textContent: 'Designer: ',    //TODO  эта строка не работает, переделать не через <p>
-				innerHTML: `<p>Designer: <a class="footer__link" target="_blank" href="https://t.me/Mrsshmallowww">Anastasia Ilina</a></p>
+				textContent: 'Designer: ',    //TODO  эта строка не работает
+				innerHTML: `Designer: <a class="footer__link" target="_blank" href="https://t.me/Mrsshmallowww">Anastasia Ilina</a>
 				`,
 				}),
 			createElement('li', {
 				className: 'footer-development__item',
-				textContent: 'Developer: ',   //TODO эта строка не работает, переделать не через <p>
-				innerHTML: `<p>Developer: <a class="footer__link" target="_blank" href="https://t.me/Khabibullin_Daniel">Khabibullin Daniel</a></p>
+				textContent: 'Developer: ',   //TODO эта строка не работает
+				innerHTML: `Developer: <a class="footer__link" target="_blank" href="https://t.me/Khabibullin_Daniel">Khabibullin Daniel</a>
 				`,
 				}
 			),
@@ -219,7 +219,7 @@ export const renderFooter = () => {
 );
 
 };
-
+	// строки 4-24 и 116-218 можно заменить кодом ниже
 	// container.insertAdjacentHTML('beforeend', `
 	// 	<div class="footer__item  footer__item_social footer-social">
 	// 		<h2 class="footer__title footer-social__title">Связаться с нами</h2>
