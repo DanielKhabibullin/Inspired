@@ -7,7 +7,7 @@ export const createCssColors = (colors) => {
 		style.textContent += `
 			.color_${color.title}:after {
 				background-color: ${color.code};
-				${color.title === 'white' ? 'border: 0.4px solid #fff;' : ''}
+				${color.title === 'white' ? 'border: 0.4px solid #000;' : ''}
 			}
 		`
 	});
