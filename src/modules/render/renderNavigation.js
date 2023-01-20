@@ -1,11 +1,10 @@
-import { DATA } from "../const";
+import { DATA, navigation } from "../const";
 import { createElement } from "../createElement";
 
 let flag = false;
-let oldGender = '';
+let oldGender = 'women';
 
 export const renderNavigation = (gender, category) => {
-	const navigation = document.querySelector('.navigation');
 	
 	if (!gender) {
 		navigation.style.display = 'none';
@@ -15,6 +14,10 @@ export const renderNavigation = (gender, category) => {
 
 	if (flag && oldGender === gender) {
 		return;
+	}
+
+	if (gender === 'all') {
+		gender = oldGender;
 	}
 	oldGender = gender;
 	flag = true;

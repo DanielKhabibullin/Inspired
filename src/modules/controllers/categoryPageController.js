@@ -1,9 +1,9 @@
 import { DATA } from "../const";
-import { renderHero } from "./renderHero";
-import { renderNavigation } from "./renderNavigation";
-import { renderProducts } from "./renderProducts";
+import { renderHero } from "../render/renderHero";
+import { renderNavigation } from "../render/renderNavigation";
+import { renderProducts } from "../render/renderProducts";
 
-export const categoryPage = (routerData) => {
+export const categoryPageController = (routerData) => {
 	const { gender, category } = routerData.data;
 	const params = { gender, category };
 
@@ -14,7 +14,7 @@ export const categoryPage = (routerData) => {
 	const {title} = DATA.navigation[gender].list
 		.find(item => item.slug === category);
 
-	renderNavigation(gender, category);
+		renderNavigation(gender, category);
 	renderHero(false);
 	renderProducts(title, params);
 }
