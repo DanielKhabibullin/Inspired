@@ -32,19 +32,16 @@
 
 		border: 1px solid $gray;
 
-		@supports not selector(:focus-visible) {
+		@supports selector(:focus-visible) {
 			&:focus {
+				outline: none;
 				border: 1px solid $main-color;
 			}
-		}
 
-		&:focus {
-			outline: none;
-		}
-
-		&:focus-visible {
-			outline: none;
-			border: 1px solid $main-color;
+			&:focus-visible {
+				outline: none;
+				border: 1px solid $main-color;
+			}
 		}
 
 		&::placeholder {
