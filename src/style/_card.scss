@@ -95,7 +95,7 @@ margin-bottom: 100px;
 &__vendor-code {
 	font-size: 12px;
 	line-height: 15px;
-	color: #000000;
+	color: $main-color;
 	margin-bottom: 24px;
 
 	@include tablet {

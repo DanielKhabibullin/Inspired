@@ -11,8 +11,7 @@ export const categoryPageController = (routerData) => {
 		params.page = routerData.params.page;
 	}
 
-	const {title} = DATA.navigation[gender].list
-		.find(item => item.slug === category);
+	const {title} = DATA.navigation[gender].list.find(item => item.slug === category);
 
 		renderNavigation(gender, category);
 	renderHero(false);
