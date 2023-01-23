@@ -4,7 +4,7 @@ import { getUrl } from "../utils/getUrl";
 export const renderPagination = (wrapperPagination, page, pages, count) => {
 	wrapperPagination.textContent = '';
 
-	createElement('ul',
+	const paginationList = createElement('ul',
 		{
 			className: 'pagination__list',
 		},
@@ -14,7 +14,7 @@ export const renderPagination = (wrapperPagination, page, pages, count) => {
 	);
 
 	const isNotStart = page - Math.floor(count / 2) > 1;
-	const isEnd = page + Math.floor(count / 2) > pages;
+	const isEnd = page + Math.floor(count / 2) >= pages;
 
 	if (count > pages) {
 		count = pages
@@ -36,7 +36,7 @@ export const renderPagination = (wrapperPagination, page, pages, count) => {
 				className: 'pagination__item',
 			},
 			{
-				parent: 'pagination__list',
+				parent: paginationList,
 				append: createElement('a',
 					{	
 						textContent: n,
@@ -50,24 +50,32 @@ export const renderPagination = (wrapperPagination, page, pages, count) => {
 	if (pages > count) {
 		createElement('a',
 			{
-				className: `pagination__arrow  pagination__arrow-start  ${isNotStart ? 'pagination__arrow_disabled': ''}`,
+				className: `pagination__arrow  pagination__arrow_start  ${isNotStart ? 'pagination__arrow_disabled': ''}`,
 				href: getUrl({page: 1}),
-				innerHTML: `<svg width="5" height="8" viewBox="0 0 5 8" xmlns="http://www.w3.org/2000/svg">
-				<path d="M5 7.06L1.90958 4L5 0.94L4.04858 0L-1.19209e-07 4L4.04858 8L5 7.06Z"/>
-				</svg>`,
+				tabIndex: !isNotStart ? '-1' : '0',
+				innerHTML: `
+					<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+						<path d="M14 15.06L10.9096 12L14 8.94L13.0486 8L9 12L13.0486 16L14 15.06Z" fill="currentColor"/>
+					</svg>
+				`,
 				ariaLabel: 'В начало',
 			},
 			{
-				parent: wrapperPagination,
+				cb(link) {
+					wrapperPagination.prepend(link)
+				},
 			}
 		),
 		createElement('a',
 			{
-				className: `pagination__arrow  pagination__arrow-end  ${isEnd ? 'pagination__arrow_disabled': ''}`,
+				className: `pagination__arrow  pagination__arrow_end  ${isEnd ? 'pagination__arrow_disabled': ''}`,
 				href: getUrl({page: pages}),
-				innerHTML: `<svg width="5" height="8" viewBox="0 0 5 8" xmlns="http://www.w3.org/2000/svg">
-				<path d="M0 7.06L3.09042 4L0 0.94L0.951417 0L5 4L0.951417 8L0 7.06Z"/>
-				</svg>`,
+				tabIndex: isEnd ? '-1' : '0',
+				innerHTML: `
+					<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+						<path d="M10 15.06L13.0904 12L10 8.94L10.9514 8L15 12L10.9514 16L10 15.06Z" fill="currentColor"/>
+					</svg>
+				`,
 				ariaLabel: 'В конец',
 			},
 			{

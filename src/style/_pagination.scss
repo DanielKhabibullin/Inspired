@@ -1,41 +1,53 @@
 // goods__pagination  pagination
 .pagination {
-	padding: 20px 0;
-	margin: 0 auto;
 	position: relative;
+	margin: 0 auto;
+	padding-top: 40px;
+	width: max-content;
 	display: flex;
-	align-items: center;
-	width:fit-content;
+	gap: 16px;
 
-	&__item:not(:last-child) {
-		margin-right: 20px;
+
+	&__list {
+		display: flex;
+		padding-top: 3px;
+		padding-bottom: 6px;
+		gap: 8px;
 	}
 
 	&__link {
+		position: relative;
+		width: 16px;
 		font-weight: 400;
 		font-size: 14px;
 		color: $gray;
-		&_active{
+
+		&:after {
+			display: block;
+			content: '';
+			position: absolute;
+			left: 0;
+			right: 0;
+			bottom: -6px;
+			height: 1px;
+			background-color: transparent;
+		}
+
+		&_active {
 			color: $main-color;
+			
+			&:after {
+				background-color: $main-color;
+			}
 		}
 	}
 	
 	&__arrow	{
-		position: absolute;
-		top: 50%;
-		transform: translateY(-50%);
-		&-start{
-			left: -50px;
-			right: auto;
-		}
-		&-end{
-			right: -50px;
-			left: auto;
-		}
+		color: $main-color;
+
 		&_disabled{
-			svg{
-				fill:#8A8A8A
-			}
+			color: $gray;
+			pointer-events: none;
 		}
 	}
 }
