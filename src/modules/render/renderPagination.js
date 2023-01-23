@@ -50,7 +50,7 @@ export const renderPagination = (wrapperPagination, page, pages, count) => {
 	if (pages > count) {
 		createElement('a',
 			{
-				className: `pagination__arrow  pagination__arrow_start  ${isNotStart ? 'pagination__arrow_disabled': ''}`,
+				className: `pagination__arrow  pagination__arrow_start  ${!isNotStart ? 'pagination__arrow_disabled': ''}`,
 				href: getUrl({page: 1}),
 				tabIndex: !isNotStart ? '-1' : '0',
 				innerHTML: `
