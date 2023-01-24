@@ -17,17 +17,19 @@ export const renderProducts = async ({title, params, render}) => {
 	
 	const goods = Array.isArray(data) ? data : data.goods;
 
-	const container = createElement('div', {
-		className: 'container',
+	const container = createElement('div', 
+		{
+			className: 'container',
 		},
 		{
 			parent: products,
 		},
 	);
 
-	const titleElem = createElement('h2', {
-		className: 'goods__title',
-		textContent: title,
+	const titleElem = createElement('h2', 
+		{
+			className: 'goods__title',
+			textContent: title,
 		},
 		{
 			parent: container,

@@ -38,12 +38,11 @@ export const handlerFavorite = (e) => {
 	if (target.closest('.favorite')) {
 		addFavorite(target.dataset.id)
 		target.classList.add('favorite_active');
-		console.log(getFavorite());
 		return;
 	}
 };
 
-products.addEventListener('click', handlerFavorite)
+products.addEventListener('click', handlerFavorite);
 
 export const favoriteController = () => {
 	renderNavigation({repeat: true, render: true});
