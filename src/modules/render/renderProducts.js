@@ -5,9 +5,13 @@ import { getData } from "../getData";
 import { renderPagination } from "./renderPagination";
 
 
-export const renderProducts = async (title, params) => {
+export const renderProducts = async ({title, params, render}) => {
 
 	products.textContent = '';
+
+	if (!render) {
+		return;
+	}
 	
 	const data = await getData(`${API_URL}/api/goods`, params);
 	

@@ -32,9 +32,9 @@ const heroLink = createElement('a', {
 
 
 
-export const renderHero = (gender) => {
+export const renderHero = ({gender, render}) => {
 
-	if (!gender) {
+	if (!render) {
 		hero.style.display = 'none';
 		return;
 	}

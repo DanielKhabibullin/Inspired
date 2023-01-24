@@ -18,3 +18,5 @@ export const header = document.querySelector('.header');
 export const products = document.querySelector('.goods');
 export const footer = document.querySelector('.footer');
 export const card = document.querySelector('.card');
+export const order = document.querySelector('.order');
+export const cart = document.querySelector('.cart');
