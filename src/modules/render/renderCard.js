@@ -1,5 +1,5 @@
 import { API_URL, card, DATA } from "../const"
-import { addProductCart } from "../controllers/cartController";
+import { addProductCart, calcTotalPrice } from "../controllers/cartController";
 import { getFavorite, handlerFavorite } from "../controllers/favoriteController";
 import { createElement } from "../createElement";
 import { renderCount } from "./renderCount";
@@ -53,15 +53,16 @@ export const renderCard = ({data, render}) => {
 					e.preventDefault();
 					const formData = new FormData(elem);
 					const product = Object.fromEntries(formData);
-					if (product.color && product.size && product.count) {
 
+					if (product.color && product.size && product.count) {
 						addProductCart(product);
+						calcTotalPrice.updateCount();
 						return;
 					}
 
 					createElement('p',
 					{
-						className: 'card__alert', //TODO make scss styles
+						className: 'card__alert', 
 						textContent: product.size
 							? product.color
 								? product.count
@@ -72,11 +73,11 @@ export const renderCard = ({data, render}) => {
 					},
 					{
 						parent: form,
-						cb(p) {
-							setTimeout(() => {
-								p.remove()
-							}, 3000);
-						}
+						// cb(p) {
+						// 	setTimeout(() => {
+						// 		p.remove()
+						// 	}, 3000);
+						// }
 					}
 					);
 				})

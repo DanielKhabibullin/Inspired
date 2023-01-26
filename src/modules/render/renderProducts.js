@@ -4,9 +4,7 @@ import { createElement } from "../createElement";
 import { getData } from "../getData";
 import { renderPagination } from "./renderPagination";
 
-
 export const renderProducts = async ({title, params, render}) => {
-
 	products.textContent = '';
 
 	if (!render) {
@@ -36,7 +34,7 @@ export const renderProducts = async ({title, params, render}) => {
 		},
 	);
 
-	if(Object.hasOwn(data, 'totalCount')) {
+	if (data.hasOwnProperty('totalCount')) {
 		createElement('sup',
 			{
 				className: 'goods__title-sup',

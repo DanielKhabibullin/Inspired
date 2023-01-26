@@ -1,10 +1,10 @@
 import { API_URL, cart } from "../const";
-import { addProductCart, calcTotalPrice, getCart, removeCart } from "../controllers/cartController";
+import { addProductCart, calcTotalPrice, cartGoodsStore, getCart, removeCart } from "../controllers/cartController";
 import { createElement } from "../createElement";
 import { getData } from "../getData";
 import { renderCount } from "./renderCount";
 
-export const renderCart = ({render, cartGoodsStore}) => {
+export const renderCart = ({ render }) => {
 	cart.textContent = '';
 
 	if (!render) {
@@ -30,7 +30,7 @@ export const renderCart = ({render, cartGoodsStore}) => {
 		}
 	);
 
-	getCart().forEach(async product => {
+	getCart().forEach((product) => {
 		const data = cartGoodsStore.getProduct(product.id);
 
 		const li = createElement('li', 
@@ -92,22 +92,23 @@ export const renderCart = ({render, cartGoodsStore}) => {
 						const isRemove = removeCart(product);
 						if (isRemove) {
 							li.remove();
-							calcTotalPrice.update();
+							calcTotalPrice.updateTotalPrice();
+							calcTotalPrice.updateCount();
 						}
-					})
-				}
+					});
+				},
 			},
 		);
 
-		const countBlock = renderCount(product.count, 'item__count', count => {
+		const countBlock = renderCount(product.count, 'item__count', (count) => {
 			product.count = count;
 			addProductCart(product, true);
-			calcTotalPrice.update();
+			calcTotalPrice.updateTotalPrice();
+			calcTotalPrice.updateCount();
 		});
 
 		article.insertAdjacentElement('beforeEnd', countBlock);
-
-	})
+	});
 
 	const cartTotal = createElement('div', 
 		{
@@ -130,7 +131,7 @@ export const renderCart = ({render, cartGoodsStore}) => {
 				{}, 
 				{
 					cb(elem) {
-						calcTotalPrice.update();
+						calcTotalPrice.updateTotalPrice();
 						calcTotalPrice.writeTotal(elem);
 					}
 				}

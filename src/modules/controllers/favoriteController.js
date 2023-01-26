@@ -31,7 +31,6 @@ export const handlerFavorite = (e) => {
 	if (target.closest('.favorite_active')) {
 		removeFavorite(target.dataset.id)
 		target.classList.remove('favorite_active');
-		console.log(getFavorite());
 		return;
 	}
 

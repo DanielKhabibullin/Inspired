@@ -39,7 +39,7 @@ module.exports = {
             appName: "Inspired",
             appDescription: "lingerie shop",
             developerName: "Khabibullin_Daniel",
-				background: '#000',
+				background: '#333333',
          },
       }),
       //  new CopyPlugin({
