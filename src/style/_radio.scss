@@ -1,13 +1,16 @@
 .radio {
+	position: relative;
 	display: flex;
 	align-items: center;
+	gap: 8px;
+	padding-left: 4px;
 	cursor: pointer;
 
 	&__input {
 		position: relative;
 		appearance: none;
-		padding: 4px;
-		margin-right: 8px;
+		//padding: 4px;
+		//margin-right: 8px;
 
 		&:before {
 			content: '';
@@ -45,7 +48,4 @@
 			box-shadow: 0px 0px 10px $dark-gray;
 		}
 	}
-
-
-
 }

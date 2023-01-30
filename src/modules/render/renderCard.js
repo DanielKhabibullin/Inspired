@@ -73,11 +73,11 @@ export const renderCard = ({data, render}) => {
 					},
 					{
 						parent: form,
-						// cb(p) {
-						// 	setTimeout(() => {
-						// 		p.remove()
-						// 	}, 3000);
-						// }
+						cb(p) {
+							setTimeout(() => {
+								p.remove()
+							}, 3000);
+						}
 					}
 					);
 				})

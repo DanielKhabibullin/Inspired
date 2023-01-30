@@ -118,13 +118,22 @@ export const renderFooter = () => {
 	footer.textContent = '';
 	
 	const container = createElement('div', 
-	{
-	className: 'container  footer__container',
-	},
-	{
-		parent: footer,
-		append: createFooterCategory()
-	},
+		{
+			className: 'container',
+		},
+		{
+			parent: footer,
+		},
+	);
+
+	const footerContainer = createElement('div',
+		{
+			className: 'footer__container',
+		},
+		{ 
+			parent: container, 
+			append: createFooterCategory() 
+		},
 	);
 
 	const footerSocial = createElement('div', 
@@ -135,7 +144,7 @@ export const renderFooter = () => {
 					<p class="footer-social__subtitle">Контакты и адреса магазинов</p>`,
 	},
 	{
-		parent: container,
+		parent: footerContainer,
 	},
 	);
 
@@ -169,7 +178,7 @@ export const renderFooter = () => {
 		`,
 	},
 	{
-		parent: container,
+		parent: footerContainer,
 	},
 	);
 
@@ -181,7 +190,7 @@ export const renderFooter = () => {
 			`
 		},
 		{
-			parent: container,
+			parent: footerContainer,
 		},
 	);
 
@@ -190,7 +199,7 @@ export const renderFooter = () => {
 			className: 'footer__item  footer__item_development  footer-development'
 		},
 		{
-			parent: container,
+			parent: footerContainer,
 		},
 	);
 
@@ -203,13 +212,11 @@ export const renderFooter = () => {
 		appends: [
 			createElement('li', {
 				className: 'footer-development__item',
-				textContent: 'Designer: ',    //TODO  эта строка не работает
 				innerHTML: `Designer: <a class="footer__link" target="_blank" href="https://t.me/Mrsshmallowww">Anastasia Ilina</a>
 				`,
 				}),
 			createElement('li', {
 				className: 'footer-development__item',
-				textContent: 'Developer: ',   //TODO эта строка не работает
 				innerHTML: `Developer: <a class="footer__link" target="_blank" href="https://t.me/Khabibullin_Daniel">Khabibullin Daniel</a>
 				`,
 				}
@@ -219,43 +226,3 @@ export const renderFooter = () => {
 );
 
 };
-	// строки 4-24 и 116-218 можно заменить кодом ниже
-	// container.insertAdjacentHTML('beforeend', `
-	// 	<div class="footer__item  footer__item_social footer-social">
-	// 		<h2 class="footer__title footer-social__title">Связаться с нами</h2>
-	// 		<p class="footer-social__subtitle">Контакты и адреса магазинов</p> 
-	// 		<ul class="footer-social__list">
-	// 			<li class="footer-social__item">
-	// 				<a class="footer-social__link  footer-social__link_vk  footer__link" href="https://vk.com">
-	// 					<svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-	// 						<path d="M12 0C5.37281 0 0 5.37256 0 12C0 18.6274 5.37281 24 12 24C18.6272 24 24 18.6274 24 12C24 5.37256 18.6272 0 12 0ZM18.087 13.2978C18.6463 13.8441 19.2381 14.3583 19.7402 14.961C19.9626 15.2277 20.1723 15.5034 20.3319 15.8135C20.5597 16.2557 20.354 16.7406 19.9582 16.7669L17.4997 16.7664C16.8648 16.8189 16.3595 16.5628 15.9335 16.1287C15.5935 15.7828 15.278 15.4133 14.9505 15.0556C14.8167 14.9087 14.6757 14.7705 14.5078 14.6617C14.1726 14.4437 13.8815 14.5105 13.6895 14.8606C13.4938 15.2169 13.4491 15.6117 13.4304 16.0082C13.4037 16.5879 13.2288 16.7394 12.6472 16.7666C11.4044 16.8248 10.2251 16.6362 9.12908 16.0097C8.16221 15.457 7.41385 14.677 6.76174 13.7938C5.49189 12.0722 4.51937 10.1826 3.64554 8.23881C3.44888 7.80104 3.59276 7.56681 4.0757 7.55773C4.87808 7.54226 5.68045 7.54423 6.48282 7.55699C6.80937 7.56215 7.02543 7.74899 7.1509 8.05713C7.58449 9.12393 8.11605 10.1389 8.78216 11.0803C8.95967 11.3309 9.14087 11.5809 9.39892 11.7579C9.68372 11.9534 9.90077 11.8888 10.0351 11.5708C10.121 11.3688 10.1581 11.1527 10.1767 10.9361C10.2406 10.1944 10.2482 9.45293 10.1377 8.71415C10.069 8.25183 9.80894 7.95327 9.34809 7.86586C9.11337 7.82142 9.14774 7.73451 9.26191 7.60045C9.46005 7.36868 9.64567 7.22529 10.0167 7.22529L12.7943 7.2248C13.232 7.31073 13.3303 7.50715 13.3897 7.94811L13.3921 11.0348C13.387 11.2055 13.4778 11.7113 13.7842 11.823C14.0297 11.904 14.1918 11.7071 14.3386 11.5517C15.0047 10.8448 15.4793 10.0105 15.9043 9.14701C16.0919 8.7662 16.2537 8.37213 16.4108 7.97733C16.5277 7.6854 16.7094 7.54177 17.0389 7.54668L19.7136 7.54987C19.7925 7.54987 19.8725 7.55061 19.9506 7.56411C20.4014 7.64121 20.5248 7.83517 20.3854 8.27491C20.1659 8.96581 19.7394 9.54132 19.3225 10.1183C18.8757 10.736 18.3991 11.3322 17.9567 11.9526C17.5501 12.5198 17.5822 12.8053 18.087 13.2978Z"/>
-	// 						</svg>
-	// 					</a>
-	// 				</li>
-	// 				<li class="footer-social__item">
-	// 					<a class="footer-social__link  footer-social__link_tg  footer__link" href="https://telegram.org/">
-	// 						<svg width="24" height="24" fill="currentColor" viewBox="0 0 32 32" version="1.1" xmlns="http://www.w3.org/2000/svg">
-	// 							<path d="M22.122 10.040c0.006-0 0.014-0 0.022-0 0.209 0 0.403 0.065 0.562 0.177l-0.003-0.002c0.116 0.101 0.194 0.243 0.213 0.403l0 0.003c0.020 0.122 0.031 0.262 0.031 0.405 0 0.065-0.002 0.129-0.007 0.193l0-0.009c-0.225 2.369-1.201 8.114-1.697 10.766-0.21 1.123-0.623 1.499-1.023 1.535-0.869 0.081-1.529-0.574-2.371-1.126-1.318-0.865-2.063-1.403-3.342-2.246-1.479-0.973-0.52-1.51 0.322-2.384 0.221-0.23 4.052-3.715 4.127-4.031 0.004-0.019 0.006-0.040 0.006-0.062 0-0.078-0.029-0.149-0.076-0.203l0 0c-0.052-0.034-0.117-0.053-0.185-0.053-0.045 0-0.088 0.009-0.128 0.024l0.002-0.001q-0.198 0.045-6.316 4.174c-0.445 0.351-1.007 0.573-1.619 0.599l-0.006 0c-0.867-0.105-1.654-0.298-2.401-0.573l0.074 0.024c-0.938-0.306-1.683-0.467-1.619-0.985q0.051-0.404 1.114-0.827 6.548-2.853 8.733-3.761c1.607-0.853 3.47-1.555 5.429-2.010l0.157-0.031zM15.93 1.025c-8.302 0.020-15.025 6.755-15.025 15.060 0 8.317 6.742 15.060 15.060 15.060s15.060-6.742 15.060-15.060c0-8.305-6.723-15.040-15.023-15.060h-0.002q-0.035-0-0.070 0z"></path>
-	// 						</svg>
-	// 					</a>
-	// 				</li>
-	// 			</ul>
-	// 	</div>
-	// 	<div class="footer__item  footer__item_contacts footer-contacts">
-	// 		<a class="footer__link" href="mailto:Inspired@gmail.com">Inspired@gmail.com</a>
-	// 		<a class="footer__link" href="tel:89304902620">8 930 490 26 20</a>
-	// 	</div>
-	// 	<div class="footer__item  footer__item_copyright footer-copyright">
-	// 		<p>© INSPIRED, 2023</p>
-	// 	</div>
-	// 	<div class="footer__item  footer__item_development footer-development">
-	// 		<ul class="footer-development__list">
-	// 			<li class="footer-development__item">
-	// 				Designer: <a class="footer__link" target="_blank" href="https://t.me/Mrsshmallowww">Anastasia Ilina</a>
-	// 			</li>
-	// 			<li class="footer-development__item">
-	// 				Developer: <a class="footer__link" target="_blank" href="https://t.me/Khabibullin_Daniel">Khabibullin Daniel</a>
-	// 			</li>
-	// 		</ul>
-	// 	</div>
-	// `);

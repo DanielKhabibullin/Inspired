@@ -136,7 +136,6 @@ const showOrderInfo = (data) => {
 				{}, 
 				{
 					cb(elem) {
-						calcTotalPrice.update();  // ?? 
 						calcTotalPrice.writeTotal(elem);
 					}
 				}

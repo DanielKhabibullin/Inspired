@@ -1,14 +1,13 @@
 .cart {
-	
 	margin-bottom: 90px;
 
-@include tablet {
-	margin-bottom: 60px;
-}
+	@include tablet {
+		margin-bottom: 60px;
+	}
 
-@include mobile {
-	margin-bottom: 40px;
-}
+	@include mobile {
+		margin-bottom: 40px;
+	}
 
 	&__title {
 		font-weight: 400;
