@@ -122,5 +122,4 @@ export const renderProducts = async ({title, params, render}) => {
 		
 				renderPagination(pagination, data.page, data.pages, COUNT_PAGINATION );
 		}
-
 };
