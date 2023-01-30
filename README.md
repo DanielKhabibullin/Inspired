@@ -2,7 +2,7 @@
 # Lingerie shop
 - webpack
 - scss
-- adaptive
+- responsive
 - crossbrowser
 - API
 - npm navigo like React Router
