@@ -4,15 +4,15 @@ export const API_URL = 'https://treasure-concise-occupation.glitch.me';
 export const TITLE = {
 	women: {
 		title: 'Новая коллекция Бюстгальтер-балконет',
-		id:'2269903069'
+		id: '2269903069',
 	},
 	men: {
 		title: 'Боксеры из новой коллекции',
-		id:'4413664778'
+		id: '4413664778',
 	},
 };
 export const navigation = document.querySelector('.navigation');
-export const main = document.querySelector('main')
+export const main = document.querySelector('main');
 export const hero = document.querySelector('.hero');
 export const header = document.querySelector('.header');
 export const products = document.querySelector('.goods');

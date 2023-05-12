@@ -1,50 +1,50 @@
-import { API_URL, cart } from "../const";
-import { addProductCart, calcTotalPrice, cartGoodsStore, getCart, removeCart } from "../controllers/cartController";
-import { createElement } from "../createElement";
-import { getData } from "../getData";
-import { renderCount } from "./renderCount";
+import {API_URL, cart} from '../const';
+import {addProductCart, calcTotalPrice, cartGoodsStore, getCart,
+	removeCart} from '../controllers/cartController';
+import {createElement} from '../createElement';
+import {renderCount} from './renderCount';
 
-export const renderCart = ({ render }) => {
+export const renderCart = ({render}) => {
 	cart.textContent = '';
 
 	if (!render) {
 		return;
 	}
 
-	const container = createElement('div', 
+	const container = createElement('div',
 		{
 			className: 'container',
-			innerHTML: '<h2 class="cart__title">Корзина</h2>'
+			innerHTML: '<h2 class="cart__title">Корзина</h2>',
 		},
 		{
 			parent: cart,
 		},
 	);
 
-	const cartList = createElement('ul', 
+	const cartList = createElement('ul',
 		{
-			className: 'cart__list'
+			className: 'cart__list',
 		},
 		{
-			parent: container
-		}
+			parent: container,
+		},
 	);
 
 	getCart().forEach((product) => {
 		const data = cartGoodsStore.getProduct(product.id);
 
-		const li = createElement('li', 
+		const li = createElement('li',
 			{
 				className: 'cart__item',
 			},
 			{
 				parent: cartList,
 			},
-	);
+		);
 
 		const article = createElement('article',
 			{
-				className: 'item'
+				className: 'item',
 			},
 			{
 				parent: li,
@@ -80,10 +80,10 @@ export const renderCart = ({ render }) => {
 										</div>
 		`);
 
-		createElement('button', 
+		createElement('button',
 			{
 				className: 'item__del',
-				ariaLabel: 'Удалить товар из корзины' 
+				ariaLabel: 'Удалить товар из корзины',
 			},
 			{
 				parent: article,
@@ -110,7 +110,7 @@ export const renderCart = ({ render }) => {
 		article.insertAdjacentElement('beforeEnd', countBlock);
 	});
 
-	const cartTotal = createElement('div', 
+	const cartTotal = createElement('div',
 		{
 			className: 'cart__total',
 			innerHTML: '<p class="cart__total-title">Итого:</p>',
@@ -120,25 +120,24 @@ export const renderCart = ({ render }) => {
 		},
 	);
 
-	createElement('p', 
+	createElement('p',
 		{
 			className: 'cart__total-price',
-			textContent: 'руб '
+			textContent: 'руб ',
 		},
 		{
 			parent: cartTotal,
-			append: createElement('span', 
-				{}, 
+			append: createElement('span',
+				{},
 				{
 					cb(elem) {
 						calcTotalPrice.updateTotalPrice();
 						calcTotalPrice.writeTotal(elem);
-					}
-				}
-			)
+					},
+				},
+			),
 		},
 
 	);
-
-}
+};
 

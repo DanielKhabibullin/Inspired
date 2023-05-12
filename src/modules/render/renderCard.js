@@ -1,8 +1,8 @@
-import { API_URL, card, DATA } from "../const"
-import { addProductCart, calcTotalPrice } from "../controllers/cartController";
-import { getFavorite, handlerFavorite } from "../controllers/favoriteController";
-import { createElement } from "../createElement";
-import { renderCount } from "./renderCount";
+import {API_URL, card, DATA} from '../const';
+import {addProductCart, calcTotalPrice} from '../controllers/cartController';
+import {getFavorite, handlerFavorite} from '../controllers/favoriteController';
+import {createElement} from '../createElement';
+import {renderCount} from './renderCount';
 
 export const renderCard = ({data, render}) => {
 	card.textContent = '';
@@ -12,25 +12,25 @@ export const renderCard = ({data, render}) => {
 	}
 
 	const {
-		id, 
-		title, 
-		description, 
-		price, 
-		colors, 
-		pic, 
-		size
+		id,
+		title,
+		description,
+		price,
+		colors,
+		pic,
+		size,
 	} = data;
 
-	const container = createElement('div', 
+	const container = createElement('div',
 		{
-		className: 'container  card__container',
+			className: 'container  card__container',
 		},
 		{
 			parent: card,
 		},
 	);
 
-	createElement('img', 
+	createElement('img',
 		{
 			className: 'card__image',
 			src: `${API_URL}/${pic}`,
@@ -49,7 +49,7 @@ export const renderCard = ({data, render}) => {
 		{
 			parent: container,
 			cb(elem) {
-				elem.addEventListener('submit' , (e) => {
+				elem.addEventListener('submit', (e) => {
 					e.preventDefault();
 					const formData = new FormData(elem);
 					const product = Object.fromEntries(formData);
@@ -61,28 +61,28 @@ export const renderCard = ({data, render}) => {
 					}
 
 					createElement('p',
-					{
-						className: 'card__alert', 
-						textContent: product.size
-							? product.color
-								? product.count
-									? 'Что-то пошло не так'
-									: 'Кол-во не корректное'
-								: 'Выберите цвет'
-							: 'Выберите размер',
-					},
-					{
-						parent: form,
-						cb(p) {
-							setTimeout(() => {
-								p.remove()
-							}, 3000);
-						}
-					}
+						{
+							className: 'card__alert',
+							textContent: product.size ?
+							product.color ?
+								product.count ?
+									'Что-то пошло не так' :
+									'Кол-во не корректное' :
+								'Выберите цвет' :
+							'Выберите размер',
+						},
+						{
+							parent: form,
+							cb(p) {
+								setTimeout(() => {
+									p.remove();
+								}, 3000);
+							},
+						},
 					);
-				})
-			}
-		}
+				});
+			},
+		},
 	);
 
 	form.insertAdjacentHTML('beforeend', `
@@ -97,7 +97,7 @@ export const renderCard = ({data, render}) => {
 		</div>
 	`);
 
-	const cardColor = createElement('div', 
+	const cardColor = createElement('div',
 		{
 			className: 'card__color',
 			innerHTML: '<p class="card__subtitle card__color-title">Цвет</p>',
@@ -107,7 +107,7 @@ export const renderCard = ({data, render}) => {
 		},
 	);
 
-	createElement('div', 
+	createElement('div',
 		{
 			className: 'card__color-list',
 		},
@@ -117,44 +117,44 @@ export const renderCard = ({data, render}) => {
 				colors.forEach((colorId, i) => {
 					const color = DATA.colors.find((color) => color.id === colorId).title;
 
-					const label = createElement('label', 
+					const label = createElement('label',
 						{
-							className: `card__color-item color color_${color}`
+							className: `card__color-item color color_${color}`,
 						},
 						{
 							parent: colorList,
-						}
-						
+						},
+
 					);
 
 					createElement('input',
-					{
-						className: 'color__input  input-hide',
-						type: 'radio',
-						name: 'color',
-						value: color,
-						required: true,
-						checked: !i,
-					},
-					{
-						parent: label
-					}
+						{
+							className: 'color__input  input-hide',
+							type: 'radio',
+							name: 'color',
+							value: color,
+							required: true,
+							checked: !i,
+						},
+						{
+							parent: label,
+						},
 					);
 
 					createElement('span',
-					{
-						className: 'color__check',
-					},
-					{
-						parent: label
-					}
+						{
+							className: 'color__check',
+						},
+						{
+							parent: label,
+						},
 					);
 				});
 			},
 		},
 	);
 
-	const cardSize = createElement('div', 
+	const cardSize = createElement('div',
 		{
 			className: 'card__size',
 			innerHTML: '<p class="card__subtitle card__size-title">Размер</p>',
@@ -164,7 +164,7 @@ export const renderCard = ({data, render}) => {
 		},
 	);
 
-	createElement('div', 
+	createElement('div',
 		{
 			className: 'card__size-list',
 		},
@@ -172,14 +172,14 @@ export const renderCard = ({data, render}) => {
 			parent: cardSize,
 			cb(sizeList) {
 				size.forEach((item) => {
-					const label = createElement('label', 
+					const label = createElement('label',
 						{
-							className: `card__size-item size`
+							className: `card__size-item size`,
 						},
 						{
 							parent: sizeList,
-						}
-						
+						},
+
 					);
 
 					createElement('input',
@@ -188,20 +188,20 @@ export const renderCard = ({data, render}) => {
 							type: 'radio',
 							name: 'size',
 							value: item,
-							//required: true,
+							// required: true,
 						},
 						{
-							parent: label
-						}
+							parent: label,
+						},
 					);
 
 					createElement('span',
 						{
 							className: 'size__check',
-							textContent: item
+							textContent: item,
 						},
 						{
-							parent: label
+							parent: label,
 						},
 					);
 				});
@@ -223,8 +223,8 @@ export const renderCard = ({data, render}) => {
 		{
 			className: 'card__add-cart main-button',
 			type: 'submit',
-			textContent: 'В корзину'
-		}
+			textContent: 'В корзину',
+		},
 	);
 
 	const favoriteBtn = createElement('button',
@@ -232,26 +232,25 @@ export const renderCard = ({data, render}) => {
 			className: `card__favorite  favorite
 				${getFavorite().includes(id) ? 'favorite_active' : ''}`,
 			type: 'button',
-			ariaLabel: 'Добавить в избранное'
+			ariaLabel: 'Добавить в избранное',
 		},
 		{
 			cb(elem) {
-			elem.dataset.id = id;
-			elem.addEventListener('click', handlerFavorite);
-			}
-		}
+				elem.dataset.id = id;
+				elem.addEventListener('click', handlerFavorite);
+			},
+		},
 	);
 
-	createElement('div', 
+	createElement('div',
 		{
 			className: 'card__control',
 		},
 		{
 			parent: form,
-			appends: [count, addCart, favoriteBtn]
+			appends: [count, addCart, favoriteBtn],
 		},
 	);
-
 };
 /*
 			<button class="card__add-cart main-button" type="submit">В корзину</button>

@@ -1,7 +1,7 @@
-import { createElement } from "./createElement"
+import {createElement} from './createElement';
 
 export const createCssColors = (colors) => {
-	let style = createElement('style');
+	const style = createElement('style');
 
 	colors.forEach(color => {
 		style.textContent += `
@@ -9,8 +9,8 @@ export const createCssColors = (colors) => {
 				background-color: ${color.code};
 				${color.title === 'white' ? 'border: 0.4px solid #000;' : ''}
 			}
-		`
+		`;
 	});
 
 	document.head.append(style);
-}
+};

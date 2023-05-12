@@ -1,8 +1,8 @@
-import { router } from "../router";
+import {router} from '../router';
 
 export const getUrl = (params) => {
 	const currentLocation = router.getCurrentLocation();
-	
+
 	let url = currentLocation.url;
 
 	const searchParams = new URLSearchParams(currentLocation.queryString);
@@ -14,4 +14,4 @@ export const getUrl = (params) => {
 	url += `?${searchParams.toString()}`;
 
 	return url;
-}
+};

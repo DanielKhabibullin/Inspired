@@ -1,4 +1,5 @@
-export const createElement = (tag, attr, {append, appends, parent, cb} = {}) => {
+export const createElement =
+(tag, attr, {append, appends, parent, cb} = {}) => {
 	const element = document.createElement(tag);
 
 	if (attr) {
@@ -22,4 +23,4 @@ export const createElement = (tag, attr, {append, appends, parent, cb} = {}) => 
 	}
 
 	return element;
-} 
+};

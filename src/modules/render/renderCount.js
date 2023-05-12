@@ -1,53 +1,53 @@
-import { countController } from "../controllers/countController";
-import { createElement } from "../createElement"
+import {countController} from '../controllers/countController';
+import {createElement} from '../createElement';
 
 export const renderCount = (count, className, returnCount = () => {}) => {
 	const control = createElement('div',
 		{
-			className: `${className}  count`
-		}
+			className: `${className}  count`,
+		},
 	);
-	
-	const minus = createElement('button', 
+
+	const minus = createElement('button',
 		{
 			className: 'count__item count__minus',
 			type: 'button',
-			textContent: '-'
+			textContent: '-',
 		},
 		{
-			parent: control
-		}
+			parent: control,
+		},
 	);
-	const number = createElement('span', 
+	const number = createElement('span',
 		{
 			className: 'count__item count__number',
-			textContent: count
+			textContent: count,
 		},
 		{
-			parent: control
-		}
+			parent: control,
+		},
 	);
-	const plus = createElement('button', 
+	const plus = createElement('button',
 		{
 			className: 'count__item count__plus',
 			type: 'button',
-			textContent: '+'
+			textContent: '+',
 		},
 		{
-			parent: control
-		}
+			parent: control,
+		},
 	);
-	const input = createElement('input', 
+	const input = createElement('input',
 		{
 			type: 'hidden',
 			value: count,
 			name: 'count',
 		},
 		{
-			parent: control
-		}
+			parent: control,
+		},
 	);
 
 	countController(minus, number, plus, input, returnCount);
 	return control;
-}
+};

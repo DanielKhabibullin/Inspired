@@ -1,23 +1,23 @@
-import { DATA } from "../const";
-import { renderCard } from "../render/renderCard";
-import { renderCart } from "../render/renderCart";
-import { renderHero } from "../render/renderHero";
-import { renderNavigation } from "../render/renderNavigation";
-import { renderOrder } from "../render/renderOrder";
-import { renderProducts } from "../render/renderProducts";
+import {DATA} from '../const';
+import {renderCard} from '../render/renderCard';
+import {renderCart} from '../render/renderCart';
+import {renderHero} from '../render/renderHero';
+import {renderNavigation} from '../render/renderNavigation';
+import {renderOrder} from '../render/renderOrder';
+import {renderProducts} from '../render/renderProducts';
 
 export const categoryPageController = (routerData) => {
-	const { gender, category } = routerData.data;
+	const {gender, category} = routerData.data;
 	if (!Object.keys(DATA.navigation).includes(gender)) {
 		return;
 	}
-	const params = { gender, category };
+	const params = {gender, category};
 
 	if (routerData.params?.page) {
 		params.page = routerData.params.page;
 	}
 
-	const { title } = DATA.navigation[gender].list.find(
+	const {title} = DATA.navigation[gender].list.find(
 		(item) => item.slug === category,
 	);
 

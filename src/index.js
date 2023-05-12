@@ -1,19 +1,20 @@
 import './index.html';
 import './index.scss';
 
-import { router } from './modules/router';
-import { mainPageController } from './modules/controllers/mainPageController';
-import { renderFooter } from './modules/render/renderFooter';
-import { renderHeader } from './modules/render/renderHeader';
-import { getData } from './modules/getData';
-import { API_URL, DATA, main } from './modules/const';
-import { createCssColors } from './modules/createCssColors';
-import { createElement } from './modules/createElement';
-import { categoryPageController } from './modules/controllers/categoryPageController';
-import { searchPageController } from './modules/controllers/searchController';
-import { favoriteController } from './modules/controllers/favoriteController';
-import { cardController } from './modules/controllers/cardController';
-import { cartController } from './modules/controllers/cartController';
+import {router} from './modules/router';
+import {mainPageController} from './modules/controllers/mainPageController';
+import {renderFooter} from './modules/render/renderFooter';
+import {renderHeader} from './modules/render/renderHeader';
+import {getData} from './modules/getData';
+import {API_URL, DATA, main} from './modules/const';
+import {createCssColors} from './modules/createCssColors';
+import {createElement} from './modules/createElement';
+import {categoryPageController,
+} from './modules/controllers/categoryPageController';
+import {searchPageController} from './modules/controllers/searchController';
+import {favoriteController} from './modules/controllers/favoriteController';
+import {cardController} from './modules/controllers/cardController';
+import {cartController} from './modules/controllers/cartController';
 
 const init = async () => {
 	try {
@@ -47,27 +48,21 @@ const init = async () => {
 		router.on('search', searchPageController);
 
 		router.on('favorite', favoriteController);
-
-	} catch(e) {
+	} catch (e) {
 		console.warn(e);
 		createElement('h2', {
-				textContenet: 'Что-то пошло не так, попробуйте позже...'
+			textContenet: 'Что-то пошло не так, попробуйте позже...',
+		},
+		{
+			parent: main,
+			cb(h2) {
+				h2.style.textAlign = 'center';
 			},
-			{
-				parent: main,
-				cb(h2) {
-					h2.style.textAlign = 'center'
-				}
-			}
-		)
+		},
+		);
 	} finally {
 		router.resolve();
 	}
 };
 
 init();
-
-
-
-
-

@@ -1,5 +1,5 @@
-import { createElement } from "../createElement";
-import { getUrl } from "../utils/getUrl";
+import {createElement} from '../createElement';
+import {getUrl} from '../utils/getUrl';
 
 export const renderPagination = (wrapperPagination, page, pages, count) => {
 	wrapperPagination.textContent = '';
@@ -10,24 +10,24 @@ export const renderPagination = (wrapperPagination, page, pages, count) => {
 		},
 		{
 			parent: wrapperPagination,
-		}
+		},
 	);
 
 	const isNotStart = page - Math.floor(count / 2) > 1;
 	const isEnd = page + Math.floor(count / 2) >= pages;
 
 	if (count > pages) {
-		count = pages
+		count = pages;
 	}
 
-	for( let i = 0; i < count; i++ ) {
+	for (let i = 0; i < count; i++) {
 		let n = i + 1;
 
 		if (isNotStart) {
 			if (isEnd) {
-				n = pages - count + i + 1
+				n = pages - count + i + 1;
 			} else {
-				n = page - Math.floor(count / 2) + i
+				n = page - Math.floor(count / 2) + i;
 			}
 		}
 
@@ -38,19 +38,21 @@ export const renderPagination = (wrapperPagination, page, pages, count) => {
 			{
 				parent: paginationList,
 				append: createElement('a',
-					{	
+					{
 						textContent: n,
-						className: `pagination__link  ${page === n ? 'pagination__link_active' : ''}`,
-						href: getUrl({page: n}), 
-					}
-				)
+						className: `pagination__link  ${page === n ?
+							'pagination__link_active' : ''}`,
+						href: getUrl({page: n}),
+					},
+				),
 			},
-		)
+		);
 	}
 	if (pages > count) {
 		createElement('a',
 			{
-				className: `pagination__arrow  pagination__arrow_start  ${!isNotStart ? 'pagination__arrow_disabled': ''}`,
+				className: `pagination__arrow  pagination__arrow_start  ${!isNotStart ?
+					'pagination__arrow_disabled' : ''}`,
 				href: getUrl({page: 1}),
 				tabIndex: !isNotStart ? '-1' : '0',
 				innerHTML: `
@@ -62,13 +64,13 @@ export const renderPagination = (wrapperPagination, page, pages, count) => {
 			},
 			{
 				cb(link) {
-					wrapperPagination.prepend(link)
+					wrapperPagination.prepend(link);
 				},
-			}
+			},
 		),
 		createElement('a',
 			{
-				className: `pagination__arrow  pagination__arrow_end  ${isEnd ? 'pagination__arrow_disabled': ''}`,
+				className: `pagination__arrow  pagination__arrow_end  ${isEnd ? 'pagination__arrow_disabled' : ''}`,
 				href: getUrl({page: pages}),
 				tabIndex: isEnd ? '-1' : '0',
 				innerHTML: `
@@ -79,8 +81,8 @@ export const renderPagination = (wrapperPagination, page, pages, count) => {
 				ariaLabel: 'В конец',
 			},
 			{
-				parent: wrapperPagination
-			}
-		)
+				parent: wrapperPagination,
+			},
+		);
 	}
-}
+};

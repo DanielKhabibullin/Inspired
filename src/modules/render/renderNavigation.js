@@ -1,12 +1,11 @@
-import { DATA, navigation } from "../const";
-import { createElement } from "../createElement";
+import {DATA, navigation} from '../const';
+import {createElement} from '../createElement';
 
 let flag = false;
 let oldGender = 'women';
 let oldCategory = '';
 
 export const renderNavigation = ({gender, category, render, repeat}) => {
-	
 	if (!render) {
 		navigation.style.display = 'none';
 		return;
@@ -25,11 +24,11 @@ export const renderNavigation = ({gender, category, render, repeat}) => {
 	oldCategory = category;
 	flag = true;
 
-	navigation.textContent = ''
+	navigation.textContent = '';
 
-	const container = createElement('div', 
+	const container = createElement('div',
 		{
-		className: 'container'
+			className: 'container',
 		},
 		{
 			parent: navigation,
@@ -50,8 +49,8 @@ export const renderNavigation = ({gender, category, render, repeat}) => {
 			{
 				className: `gender__link
 					${gender === genderName ? 'gender__link_active' : ''}`,
-					href: `#/${genderName}`,
-					textContent: DATA.navigation[genderName].title,
+				href: `#/${genderName}`,
+				textContent: DATA.navigation[genderName].title,
 			},
 			{
 				parent: createElement(
@@ -66,33 +65,35 @@ export const renderNavigation = ({gender, category, render, repeat}) => {
 			},
 		);
 	}
-	
-	const categoryElems = DATA.navigation[gender].list.map((item) => 
+
+	const categoryElems = DATA.navigation[gender].list.map((item) =>
 		createElement(
-			'li', 
+			'li',
 			{
 				className: 'category__item',
-			}, 
+			},
 			{
 				append: createElement('a',
 					{
-						className: `category__link ${category === item.slug ? 'category__link_active' : '' }`,
+						className: `category__link ${category === item.slug ?
+							'category__link_active' : ''}`,
 						textContent: item.title,
 						href: `#/${gender}/${item.slug}`,
-					}, 
+					},
 					{
 						cb(elem) {
 							elem.addEventListener('click', () => {
-								document.querySelector('.category__link_active')?.classList.remove('category__link_active');
-		
-								elem.classList.add('category__link_active')
-							})
-						}
-					}
+								document.querySelector('.category__link_active')?.classList.
+									remove('category__link_active');
+
+								elem.classList.add('category__link_active');
+							});
+						},
+					},
 				),
-			}
-		)
-	)
+			},
+		),
+	);
 
 	createElement(
 		'ul',
@@ -101,7 +102,7 @@ export const renderNavigation = ({gender, category, render, repeat}) => {
 		},
 		{
 			parent: container,
-			appends: categoryElems
+			appends: categoryElems,
 		},
 	);
 };

@@ -1,7 +1,7 @@
-import { searchController } from "../controllers/searchController";
-import { createElement } from "../createElement";
+import {searchController} from '../controllers/searchController';
+import {createElement} from '../createElement';
 
-export const search = createElement('div',{
+export const search = createElement('div', {
 	className: 'search',
 });
 
@@ -11,25 +11,25 @@ export const searchToggle = () => {
 
 const container = createElement('div',
 	{
-		className: 'container'
+		className: 'container',
 	},
 	{
 		parent: search,
-	}
+	},
 );
 
-const form = createElement('form', 
+const form = createElement('form',
 	{
 		className: 'search__form',
 	},
 	{
 		parent: container,
-		cb: searchController
+		cb: searchController,
 	},
 );
 
 const inputSearch = createElement(
-	'input', 
+	'input',
 	{
 		className: 'search__input',
 		type: 'search',
@@ -38,11 +38,11 @@ const inputSearch = createElement(
 	},
 	{
 		parent: form,
-	}
+	},
 );
 
 createElement(
-	'button', 
+	'button',
 	{
 		className: 'search__btn',
 		type: 'submit',
@@ -50,18 +50,18 @@ createElement(
 	},
 	{
 		parent: form,
-	}
+	},
 );
 
 const searchError = createElement('p',
-		{
-			className: 'search__error',
-			textContent: 'Поле необходимо заполнить',
-			_show: true,
-		},
-		{
-			parent: form,
-		},
+	{
+		className: 'search__error',
+		textContent: 'Поле необходимо заполнить',
+		_show: true,
+	},
+	{
+		parent: form,
+	},
 );
 
 export const showSearchError = () => {
@@ -71,7 +71,7 @@ export const showSearchError = () => {
 	clearTimeout(searchError._showTimer);
 
 	searchError._showTimer = setTimeout(() => {
-	searchError.classList.remove('search__error_show');
-	inputSearch.classList.remove('search__input_error');
+		searchError.classList.remove('search__error_show');
+		inputSearch.classList.remove('search__input_error');
 	}, 3000);
 };

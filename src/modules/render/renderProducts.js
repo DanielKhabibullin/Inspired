@@ -1,8 +1,8 @@
-import { API_URL, COUNT_PAGINATION, DATA, products } from "../const";
-import { getFavorite } from "../controllers/favoriteController";
-import { createElement } from "../createElement";
-import { getData } from "../getData";
-import { renderPagination } from "./renderPagination";
+import {API_URL, COUNT_PAGINATION, DATA, products} from '../const';
+import {getFavorite} from '../controllers/favoriteController';
+import {createElement} from '../createElement';
+import {getData} from '../getData';
+import {renderPagination} from './renderPagination';
 
 export const renderProducts = async ({title, params, render}) => {
 	products.textContent = '';
@@ -10,9 +10,9 @@ export const renderProducts = async ({title, params, render}) => {
 	if (!render) {
 		return;
 	}
-	
+
 	const data = await getData(`${API_URL}/api/goods`, params);
-	
+
 	const goods = Array.isArray(data) ? data : data.goods;
 
 	const container = createElement('div', 
@@ -45,14 +45,14 @@ export const renderProducts = async ({title, params, render}) => {
 			}
 		);
 		if (!Array.isArray(data) && !data.totalCount) {
-			createElement('p', 
+			createElement('p',
 				{
 					className: 'goods__warning',
-					textContent: 'По вашему запросу ничего не найдено'
+					textContent: 'По вашему запросу ничего не найдено',
 				},
 				{
 					parent: container,
-				}
+				},
 			);
 
 			return;
@@ -64,12 +64,12 @@ export const renderProducts = async ({title, params, render}) => {
 	const listCard = goods.map((product) => {
 		const li = createElement('li', {
 			className: 'goods__item',
-			}
+		},
 		);
 
 		const article = createElement('article', {
-		className: 'product',
-		innerHTML: `
+			className: 'product',
+			innerHTML: `
 				<a class="product__link" href="#/product/${product.id}">
 					<img class="product__image" src="${API_URL}/${product.pic}" alt="${product.title}">
 					<h3 class="product__title">${product.title}</h3>
@@ -82,21 +82,21 @@ export const renderProducts = async ({title, params, render}) => {
 		},
 		{
 			parent: li,
-		}
-	);
+		},
+		);
 
 		createElement('ul', {
-			className: 'product__color-list'
-			},
-			{
-				parent: article,
-				appends: product.colors.map((colorId, i) => {
-					const color = DATA.colors.find(item => item.id == colorId);
-					return createElement('li', {
-						className: `color  color_${color.title} ${i ? '' : 'color_check'}`
-					})
-				})
-			},
+			className: 'product__color-list',
+		},
+		{
+			parent: article,
+			appends: product.colors.map((colorId, i) => {
+				const color = DATA.colors.find(item => item.id == colorId);
+				return createElement('li', {
+					className: `color  color_${color.title} ${i ? '' : 'color_check'}`
+				}),
+			})
+		},
 		);
 	return li;
 	});
@@ -116,7 +116,7 @@ export const renderProducts = async ({title, params, render}) => {
 					className: 'goods__pagination  pagination',
 				},
 				{
-					parent: container
+					parent: container,
 				},
 			)
 		

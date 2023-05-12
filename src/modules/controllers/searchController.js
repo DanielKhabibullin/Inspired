@@ -1,11 +1,11 @@
-import { renderCard } from "../render/renderCard";
-import { renderCart } from "../render/renderCart";
-import { renderHero } from "../render/renderHero";
-import { renderNavigation } from "../render/renderNavigation";
-import { renderOrder } from "../render/renderOrder";
-import { renderProducts } from "../render/renderProducts";
-import { showSearchError } from "../render/renderSearch";
-import { router } from "../router";
+import {renderCard} from '../render/renderCard';
+import {renderCart} from '../render/renderCart';
+import {renderHero} from '../render/renderHero';
+import {renderNavigation} from '../render/renderNavigation';
+import {renderOrder} from '../render/renderOrder';
+import {renderProducts} from '../render/renderProducts';
+import {showSearchError} from '../render/renderSearch';
+import {router} from '../router';
 
 export const searchController = (formSearch) => {
 	formSearch.addEventListener('submit', (e) => {
@@ -13,20 +13,19 @@ export const searchController = (formSearch) => {
 		if (formSearch.search.value.trim()) {
 			router.navigate(`search?value=${formSearch.search.value.trim()}`);
 		} else {
-			showSearchError()
-		}	
+			showSearchError();
+		}
 	});
 };
 
 export const searchPageController = (routerData) => {
 	const params = {
 		search: routerData.params.value,
-		//count: 9
+		// count: 9
 	};
 
 	if (routerData.params?.page) {
 		params.page = routerData.params.page;
-		
 	}
 
 	renderNavigation({repeat: true, render: true});
@@ -35,4 +34,4 @@ export const searchPageController = (routerData) => {
 	renderProducts({title: routerData.params.value, params, render: true});
 	renderCart({render: false});
 	renderOrder({render: false});
-}
+};

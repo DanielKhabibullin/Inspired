@@ -1,38 +1,39 @@
-import { API_URL, order } from "../const";
-import { calcTotalPrice, cartGoodsStore, clearCart, getCart } from "../controllers/cartController";
-import { sendOrder } from "../controllers/orderController";
-import { createElement } from "../createElement";
-import { router } from "../router";
+/* eslint-disable max-len */
+import {API_URL, order} from '../const';
+import {calcTotalPrice, cartGoodsStore, clearCart, getCart} from '../controllers/cartController';
+import {sendOrder} from '../controllers/orderController';
+import {createElement} from '../createElement';
+import {router} from '../router';
 
 const showOrderInfo = (data) => {
 	const modal = createElement('div',
 		{
-			className: 'modal'
+			className: 'modal',
 		},
 		{
 			parent: document.body,
 			cb(el) {
 				el.addEventListener('click', e => {
-					if(e.target === el) {
+					if (e.target === el) {
 						el.remove();
 						router.navigate('/');
 					}
-				})
-			}
-		}
+				});
+			},
+		},
 	);
 
-	const modalBody = createElement('div', 
+	const modalBody = createElement('div',
 		{
-			className: 'modal__body'
+			className: 'modal__body',
 		},
 		{
-			parent: modal
-		}
+			parent: modal,
+		},
 	);
 
-	modalBody.insertAdjacentHTML('beforeend', 
-	`
+	modalBody.insertAdjacentHTML('beforeend',
+		`
 	<h2 class="modal__title">Заказ оформлен №79</h2>
 	<p class="modal__description modal__description_thank">Спасибо за выбор нашего магазина!</p>
 	<p class="modal__description">Здесь вы можете посмотреть все детали вашего заказа.</p>
@@ -65,27 +66,27 @@ const showOrderInfo = (data) => {
 		<li class="customer__item">
 		<span class="customer__item-title">Способ получения</span>
 		<span class="customer__item-data">${
-			{
-				self: 'Самовывоз',
-				delivery: 'Доставка'
-			}[data.delivery]
-		}</span>
+	{
+		self: 'Самовывоз',
+		delivery: 'Доставка',
+	}[data.delivery]
+}</span>
 		</li>
 	</ul>
-	`
+	`,
 	);
 
-	const goodsList = createElement('ul', 
+	const goodsList = createElement('ul',
 		{
-			className: 'modal__goods goods-list'
+			className: 'modal__goods goods-list',
 		},
 		{
 			parent: modalBody,
 			appends: [...data.order.map(item => {
 				const goodsListItem = createElement('li',
 					{
-						className: 'goods-list__item'
-					}
+						className: 'goods-list__item',
+					},
 				);
 				const product = cartGoodsStore.getProduct(item.id);
 
@@ -93,21 +94,21 @@ const showOrderInfo = (data) => {
 					{
 						className: 'goods-list__img',
 						src: `${API_URL}/${product.pic}`,
-						alt: product.title
+						alt: product.title,
 					},
 					{
-						parent: goodsListItem
-					}
+						parent: goodsListItem,
+					},
 				);
 
 				createElement('p',
 					{
 						className: 'goods-list__count',
-						textContent: `X${item.count}`
+						textContent: `X${item.count}`,
 					},
 					{
-						parent: goodsListItem
-					}
+						parent: goodsListItem,
+					},
 				);
 
 				return goodsListItem;
@@ -115,7 +116,7 @@ const showOrderInfo = (data) => {
 		},
 	);
 
-	const modalTotal = createElement('div', 
+	const modalTotal = createElement('div',
 		{
 			className: 'modal__total',
 			innerHTML: '<p class="modal__total-title">Итого:</p>',
@@ -125,21 +126,21 @@ const showOrderInfo = (data) => {
 		},
 	);
 
-	createElement('p', 
+	createElement('p',
 		{
 			className: 'modal__total-price',
-			textContent: 'руб '
+			textContent: 'руб ',
 		},
 		{
 			parent: modalTotal,
-			append: createElement('span', 
-				{}, 
+			append: createElement('span',
+				{},
 				{
 					cb(elem) {
 						calcTotalPrice.writeTotal(elem);
-					}
-				}
-			)
+					},
+				},
+			),
 		},
 	);
 
@@ -151,7 +152,7 @@ const showOrderInfo = (data) => {
 			<path d="M16 8L8 16" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
 			<path d="M16 16L8 8" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
       </svg>
-			`
+			`,
 		},
 		{
 			parent: modalBody,
@@ -159,9 +160,9 @@ const showOrderInfo = (data) => {
 				el.addEventListener('click', () => {
 					modal.remove();
 					router.navigate('/');
-				})
-			}
-		}
+				});
+			},
+		},
 	);
 
 	clearCart();
@@ -174,19 +175,19 @@ export const renderOrder = ({render}) => {
 		return;
 	}
 
-	const container = createElement('div', 
+	const container = createElement('div',
 		{
 			className: 'container',
-			innerHTML: '<h2 class="order__title">Оформление заказа</h2>'
+			innerHTML: '<h2 class="order__title">Оформление заказа</h2>',
 		},
 		{
 			parent: order,
 		},
 	);
 
-	const orderForm = createElement('form', 
+	const orderForm = createElement('form',
 		{
-			className: 'order__form'
+			className: 'order__form',
 		},
 		{
 			parent: container,
@@ -203,18 +204,14 @@ export const renderOrder = ({render}) => {
 							.then(dataOrder => {
 								showOrderInfo(dataOrder);
 							});
-
 					} else {
-
 					}
-					
-				
-				})
-			}
+				});
+			},
 		},
 	);
 
-		orderForm.insertAdjacentHTML('beforeend', `
+	orderForm.insertAdjacentHTML('beforeend', `
 		<fieldset class="order__personal">
 			<label class="order__label">
 					<input class="order__input" type="text" placeholder="ФИО" name="fio" required>
@@ -246,7 +243,6 @@ export const renderOrder = ({render}) => {
 		</fieldset>
 
 		<button class="order__submit main-button" type="submit">Оформить</button>
-		`)
-
-}
+		`);
+};
 
